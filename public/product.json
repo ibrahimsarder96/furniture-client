@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Sofa",
+    "price": 15000,
+    "quantity": 7,
+    "supplier" : "Sakib",
+    "description": "You might say that this is the perfect sofa, because it offers all the benefits of reclining furniture without the drawbacks. It brings enviable design and style with chenille fabric.",
+    "img": "https://img.freepik.com/free-photo/living-room-loft-industrial-style-with-blue-sofa-empty-concrete-wall-3d-rendering_41470-3581.jpg?size=626&ext=jpg&ga=GA1.2.142737712.1632825724"
+  },
+  {
+    "id": 2,
+    "name": "King bed",
+    "price": 40000,
+    "quantity": 6,
+    "supplier" : "Sakil",
+    "description": "The Langston bedroom group is the perfect option for essential bedroom furnishing. Clean lines and Kenlin metal drawer glides provide smooth function and English dovetail construction maintains strength.",
+    "img": "https://img.freepik.com/free-photo/modern-room-with-trendy-gray-interiors-large-king-size-lamps_141188-1093.jpg?size=626&ext=jpg&ga=GA1.2.142737712.1632825724"
+  },
+  {
+    "id": 3,
+    "name": "Queen bed",
+    "price": 37000,
+    "quantity": 7,
+    "supplier" : "Sumon",
+    "description": "The Providence bed is traditional with a modern twist. The simple spindles feature round finials and castings adding simple style to this conventional frame. The metal construction features.",
+    "img": "https://img.freepik.com/free-photo/modern-luxury-bedroom-with-queen-size-white-bed-dressing-table-3d-rendering_308721-349.jpg?size=626&ext=jpg&ga=GA1.1.142737712.1632825724"
+  },
+  {
+    "id": 4,
+    "name": "Chir",
+    "price": 5000,
+    "quantity": 10,
+    "supplier" : "Sujon",
+    "description": "Create a coastal look in your home with the Fusion Seashore Sand square cocktail ottoman. This piece complements the Fusion Max Pearl collection that features matching accent pillows.",
+    "img": "https://img.freepik.com/free-photo/mid-century-modern-living-room-interior-design-with-monstera-tree_53876-129804.jpg?size=626&ext=jpg&ga=GA1.2.142737712.1632825724"
+  },
+  {
+    "id": 5,
+    "name": "Table",
+    "price": 15000,
+    "quantity": 10,
+    "supplier" : "Sujon",
+    "description": "Stand out with the Fairview Dining Collection. The table is a show stopper with beautiful open work scrolling detail and a stunning herringbone table top design. Upgrade any living space.",
+    "img": "https://img.freepik.com/free-vector/principals-office-school-with-desk-chairs-bookcase-showcase-with-sport-trophies-cartoon-empty-interior-headmaster-cabinet-meeting-talking-with-teachers-pupils-parents_107791-3108.jpg?size=626&ext=jpg&ga=GA1.2.142737712.1632825724"
+  },
+  {
+    "id": 6,
+    "name": "Wardrobe",
+    "price": 25000,
+    "quantity": 10,
+    "supplier" : "Sabbir",
+    "description": "With sophisticated style and a dark finish, the Huey Vineyard Chest is sure to enhance your bedroom''s decor with a rich traditional design that offers a warm comfortable atmosphere.  With the antique pewter color metal hardware perfectly complementing the style.",
+    "img": "https://img.freepik.com/free-vector/vector-brown-cloakroom-closet-with-shelves-full-boxes-clothes-shirts-trousers-pants-jackets-front-view_1284-48011.jpg?size=626&ext=jpg&ga=GA1.1.142737712.1632825724"
+  }
+]
