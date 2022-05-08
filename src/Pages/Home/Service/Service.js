@@ -3,9 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Service.css'
 
 const Service = ({service}) => {
-  const {id,name, img, description, quantity, price,  supplier} = service;
+  const {_id,name, img, description, quantity, price,  supplier} = service;
   const navigate = useNavigate();
   const navigateOnService = id =>{
+    console.log(id)
     navigate(`/service/${id}`)
   }
   return (
@@ -18,7 +19,7 @@ const Service = ({service}) => {
       <h6>Supplier Name: {supplier}</h6>
       <p>{description}</p>
       </div>
-      <Link to='/inventory'><button className='service-btn' onClick={() => navigateOnService (id)}>update</button></Link>
+     <Link to='/inventory'><button  onClick={() => navigateOnService (_id)} className='service-btn' >update</button></Link>
     </div>
   );
 };

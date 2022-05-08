@@ -11,6 +11,7 @@ import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
 import Blogs from './Pages/Blogs/Blogs';
 
 
+
 function App() {
   return (
     <div>
@@ -23,9 +24,9 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='/inventory' element={
-       <RequireAuth>
-         <Inventory></Inventory>
-         </RequireAuth>
+          <RequireAuth>
+           <Inventory></Inventory>
+          </RequireAuth>
         }></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes >
