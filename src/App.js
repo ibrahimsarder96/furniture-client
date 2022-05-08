@@ -9,6 +9,7 @@ import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
 import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
 import Blogs from './Pages/Blogs/Blogs';
+import AddItem from './Pages/AddItem/AddItem';
 
 
 
@@ -26,6 +27,11 @@ function App() {
         <Route path='/inventory' element={
           <RequireAuth>
            <Inventory></Inventory>
+          </RequireAuth>
+        }></Route>
+        <Route path='/additem' element={
+          <RequireAuth>
+           <AddItem></AddItem>
           </RequireAuth>
         }></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
