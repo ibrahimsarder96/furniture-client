@@ -1,9 +1,12 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loading from '../../Shared/Loading/Loading';
 
 const Login = () => {
   const emailRef = useRef('');
@@ -18,8 +21,12 @@ const Login = () => {
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   if(user){
     navigate(from, { replace: true });
+  }
+  if(loading){
+    return <Loading></Loading>
   }
   let errorElement
   if(error){
@@ -34,6 +41,16 @@ const Login = () => {
   }
   const navigateRegister = event =>{
     navigate('/register')
+  }
+  const resetPassword = async() =>{
+    const email = emailRef.current.value;
+    if(email){
+      await sendPasswordResetEmail(email);
+      toast('Sent email');
+    }
+    else{
+      toast('please enter your email address')
+    }
   }
   return (
     <div className='container mx-auto w-50 mt-5'>
@@ -50,15 +67,17 @@ const Login = () => {
     <Form.Control ref={passwordRef} type="password" placeholder="Password" required/>
   </Form.Group>
   <Form.Group className="mb-3" controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
+    
   </Form.Group>
-  <Button variant="primary" type="submit">
-    Submit
+  <Button className='w-50 d-block mx-auto' variant="primary" type="submit">
+    Login
   </Button>
 </Form>
 {errorElement}
 <p className='mt-2'>New to Smart Furniture? <Link to='/register' onClick={navigateRegister} className='text-primary p-auto text-decoration-none'>Please Register</Link></p>
+<p className='mt-4'>Forget Password? <button className='btn btn-link text-primary pe-auto text-decoration-none' onClick={resetPassword}>Reset Password</button></p>
 <SocialLogin></SocialLogin>
+<ToastContainer></ToastContainer>
     </div>
   );
 };
