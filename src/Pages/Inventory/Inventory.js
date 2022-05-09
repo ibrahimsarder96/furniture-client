@@ -1,22 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import useInventory from '../../hooks/useInventory';
+import './Inventory.css'
 
 const Inventory = () => {
   const {serviceId} = useParams();
-  const [service, setService] = useState({});
+  const [service] = useInventory(serviceId);
+  const [user, setUser] = useState({})
 
-  useEffect( () => {
-    const url = `http://localhost:5000/product/${serviceId}`;
-
-    fetch(url)
-    .then(res => res.json())
-    .then(data => setService(data))
-  },[])
-  console.log(serviceId)
+  const handleQuantityUpdate = event =>{
+    const {quantity, ...rest} = user;
+    const addQuantity = event.target.value;
+    const newQuantity = {quantity: addQuantity, ...rest};
+    console.log(newQuantity)
+    setUser(newQuantity);
+  }
   return (
-    <div>
-      <img src={service.img} alt="" />
-      <h1>Product: {service.name}</h1>
+    <div className='mt-3 container service-container'>
+      <div>
+      <img className='img-size' src={service.img} alt="" />
+      <h6>id: {service._id}</h6>
+      <h6>Product: {service.name}</h6>
+      <p>Price: {service.price}</p>
+      <p>Quantity: {service.quantity}</p>
+      <p>{service.description}</p>
+      </div>
+      <div>
+        <button className='btn-deliver'>Delivered</button>
+          <br />
+        <input onChange={handleQuantityUpdate} className='' type="text" />
+      </div>
     </div>
   );
 };

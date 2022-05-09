@@ -11,6 +11,9 @@ import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
 import Blogs from './Pages/Blogs/Blogs';
 import AddItem from './Pages/AddItem/AddItem';
 import ManageItems from './Pages/ManageItems/ManageItems';
+import { ToastContainer } from 'react-toastify';
+import MyItems from './Pages/MyItems/MyItems';
+import About from './Pages/About/About';
 
 
 
@@ -23,9 +26,10 @@ function App() {
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/service/:serviceId' element={<Inventory></Inventory>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
+        <Route path='/about' element={<About></About>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
-        <Route path='/inventory' element={
+        <Route path='/inventory/:serviceId' element={
           <RequireAuth>
            <Inventory></Inventory>
           </RequireAuth>
@@ -40,9 +44,15 @@ function App() {
            <ManageItems></ManageItems>
           </RequireAuth>
         }></Route>
+        <Route path='/myitems' element={
+          <RequireAuth>
+          <MyItems></MyItems>
+          </RequireAuth>
+        }></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes >
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }
