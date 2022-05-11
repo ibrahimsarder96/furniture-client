@@ -1,4 +1,11 @@
 # Getting Started with Create React App
+Live-website[link](https://furniture-website-48465.web.app/).
+
+- Home page
+- Products
+- Blogs
+- About
+- Login verify
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

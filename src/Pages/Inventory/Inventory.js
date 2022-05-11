@@ -5,15 +5,55 @@ import './Inventory.css'
 
 const Inventory = () => {
   const {serviceId} = useParams();
-  const [service] = useInventory(serviceId);
+  const [service, setService] = useInventory(serviceId);
   const [user, setUser] = useState({})
 
   const handleQuantityUpdate = event =>{
-    const {quantity, ...rest} = user;
-    const addQuantity = event.target.value;
-    const newQuantity = {quantity: addQuantity, ...rest};
-    console.log(newQuantity)
-    setUser(newQuantity);
+    event.preventDefault();
+    const previousQuantity = service.quantity;
+     const quantity =  event.target.quantity.value;
+     const newQuantity = parseInt(previousQuantity)  + parseInt(quantity);
+     console.log(newQuantity)
+     const updateQuantity = {quantity};
+     const url = `https://serene-sierra-89525.herokuapp.com/product/${serviceId}`;
+     fetch(url, {
+       method: 'PUT',
+       headers: {
+         'content-type': 'application/json'
+       },
+       body: JSON.stringify(updateQuantity)
+     })
+     .then(res => res.json())
+     .then(result =>{
+       console.log(result);
+       alert('quantity added successfully')
+       event.target.reset();
+     })
+   };
+    
+  const handleDeliver = service =>{
+    const proceed = window.confirm('Are you want to delivered this product?');
+    if(proceed && service >= 1){
+      const newQuantity = Number(service.quantity) -1;
+      const newItems = {...service, quantity: newQuantity}
+      setService(newItems)
+      console.log(newQuantity)
+      
+      const url = `https://serene-sierra-89525.herokuapp.com/product/${serviceId}`;
+      fetch(url, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({newItems})
+      })
+      .then(res => res.json())
+      .then(result =>{
+        setService(newItems)
+        console.log(result);
+        // alert('quantity added successfully')
+      })
+    }
   }
   return (
     <div className='mt-3 container service-container'>
@@ -26,9 +66,12 @@ const Inventory = () => {
       <p>{service.description}</p>
       </div>
       <div>
-        <button className='btn-deliver'>Delivered</button>
+        <button onClick={ () =>handleDeliver(service)} className='btn-deliver'>Delivered</button>
           <br />
-        <input onChange={handleQuantityUpdate} className='' type="text" />
+        <form onSubmit={handleQuantityUpdate}>
+        <input name="quantity"  className='' type="text" />
+        <input className='btn btn-primary' type="submit" value="updateQuantity" />
+        </form>
       </div>
     </div>
   );

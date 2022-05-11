@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import useToken from '../../../hooks/useToken';
 import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
@@ -12,12 +13,15 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 const Register = () => {
   const [agree, setAgree] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const [
     createUserWithEmailAndPassword,
     user,
     loading,
     error,
-  ] = useCreateUserWithEmailAndPassword(auth);
+  ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
+  const [token] = useToken(user);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth, {sendEmailVerification: true});
   
   const navigateLogin = () =>{
@@ -26,9 +30,9 @@ const Register = () => {
   if(loading || updating){
     return <Loading></Loading>
   }
-  if(user){
+  if(token){
     console.log(user)
-    navigate('/home')
+    navigate(from, { replace: true });
   }
   const handleRegister =async (event) =>{
     event.preventDefault();
